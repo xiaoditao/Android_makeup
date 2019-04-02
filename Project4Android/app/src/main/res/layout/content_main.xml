@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MakeUpApi"
+    tools:layout_editor_absoluteY="56dp"
+    tools:showIn="@layout/activity_main">
+
+    <TextView
+        android:id="@+id/resultTV"
+        android:layout_width="295dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="75dp"
+        android:text="Please input the brand and product you want to search, then you can get a random picture"
+        app:layout_constraintBottom_toTopOf="@+id/searchTerm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/searchTerm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="input the brand..."
+        app:layout_constraintBottom_toTopOf="@+id/intro"
+        app:layout_constraintEnd_toEndOf="@+id/intro"
+        app:layout_constraintStart_toStartOf="@+id/intro"
+        app:layout_constraintTop_toBottomOf="@+id/resultTV" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginBottom="36dp"
+        android:text="Submit"
+        app:layout_constraintBottom_toTopOf="@+id/dogPicture"
+        app:layout_constraintStart_toStartOf="@+id/dogPicture"
+        app:layout_constraintTop_toBottomOf="@+id/intro" />
+
+    <ImageView
+        android:id="@+id/dogPicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="180dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/intro"
+        app:layout_constraintStart_toStartOf="@+id/intro"
+        app:layout_constraintTop_toBottomOf="@+id/submit"
+        tools:src="@tools:sample/avatars[0]" />
+
+    <TextView
+        android:id="@+id/intro"
+        android:layout_width="341dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="43dp"
+        android:text='Input a makeup product type. e.g. "lipstick" "eyeline" "foundation"'
+        app:layout_constraintBottom_toTopOf="@+id/submit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchTerm" />
+
+</android.support.constraint.ConstraintLayout>
