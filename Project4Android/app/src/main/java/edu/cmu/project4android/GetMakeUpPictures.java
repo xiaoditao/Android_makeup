@@ -20,6 +20,7 @@ import javax.xml.transform.stream.*;
 
 public class GetMakeUpPictures {
     MakeUpApi ip = null;
+    public static String nameString = "";
 
     /*
      * search is the public GetPicture method.  Its arguments are the search term, and the InterestingPicture object that called it.  This provides a callback
@@ -42,7 +43,7 @@ public class GetMakeUpPictures {
             return search(urls[0]);
         }
 
-        protected void onPostExecute(Bitmap picture) {
+        protected void onPostExecute (Bitmap picture) {
             System.out.append("onPostExecute");
             ip.pictureReady(picture);
         }
@@ -77,6 +78,13 @@ public class GetMakeUpPictures {
             if(!xmlString.contains("<image>")) {
                 return null;
             }
+            int leftName = xmlString.indexOf("<name>");
+            int rightName = xmlString.indexOf("</name>");
+            int tagNameLen = "<name>".length();
+            leftName = leftName +tagNameLen;
+
+            nameString = xmlString.substring(leftName, rightName);
+            System.out.println("name "+ nameString);
             int left = xmlString.indexOf("<image>");
             int right = xmlString.indexOf("</image>");
             int tagLen = "<image>".length();

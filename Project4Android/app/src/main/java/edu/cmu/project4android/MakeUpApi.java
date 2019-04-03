@@ -44,11 +44,14 @@ public class MakeUpApi extends AppCompatActivity {
      */
     public void pictureReady(Bitmap picture) {
         System.out.println("pictureReady");
+        TextView resultTextViewName = (TextView) findViewById(R.id.resultName);
         TextView resultTextView = (TextView) findViewById(R.id.resultTV);
         ImageView pictureView = (ImageView)findViewById(R.id.dogPicture);
         TextView searchView = (EditText)findViewById(R.id.searchTerm);
         if (picture != null) {
             resultTextView.setText("This is a picture for " + ((EditText)findViewById(R.id.searchTerm)).getText().toString());
+            resultTextViewName.setText("Product Name: " + GetMakeUpPictures.nameString);
+            resultTextViewName.setVisibility(View.VISIBLE);
             pictureView.setImageBitmap(picture);
             pictureView.setVisibility(View.VISIBLE);
         } else {
@@ -56,6 +59,7 @@ public class MakeUpApi extends AppCompatActivity {
             resultTextView.setText("Sorry, I could not find a picture based on what you input, try to change the input, or click submit again");
             pictureView.setImageResource(R.mipmap.ic_launcher);
             pictureView.setVisibility(View.INVISIBLE);
+            resultTextViewName.setVisibility(View.INVISIBLE);
         }
 
         searchView.setText("");

@@ -13,23 +13,21 @@
         android:id="@+id/resultTV"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="473dp"
+        android:layout_marginBottom="11dp"
         android:text="Please input the brand you want to search, by clicking the button several times, you will randomly get picture from the brand"
-        app:layout_constraintBottom_toTopOf="@+id/resultName"
+        app:layout_constraintBottom_toTopOf="@+id/intro"
         app:layout_constraintEnd_toEndOf="@+id/intro"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/searchTerm"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/searchTerm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="36dp"
         android:ems="10"
-        android:hint="input a brand..."
+        android:hint="Input a brand... e.g dior"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/submit"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,10 +35,10 @@
 
     <Button
         android:id="@+id/submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="88dp"
+        android:layout_height="0dp"
         android:layout_marginStart="17dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="21dp"
         android:text="Submit"
         app:layout_constraintBottom_toTopOf="@+id/dogPicture"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,37 +46,39 @@
 
     <ImageView
         android:id="@+id/dogPicture"
-        android:layout_width="191dp"
-        android:layout_height="0dp"
+        android:layout_width="182dp"
+        android:layout_height="67dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="136dp"
+        android:layout_marginBottom="30dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/resultName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/submit"
         tools:src="@tools:sample/avatars[0]" />
 
     <TextView
         android:id="@+id/intro"
-        android:layout_width="338dp"
+        android:layout_width="328dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="25dp"
-        android:text='Input a makeup brand name. e.g. "maybelline" "dior" "benefit" "orly" "moov" "essie"'
+        android:layout_marginStart="6dp"
+        android:layout_marginBottom="24dp"
+        android:text='Input a makeup brand name. e.g. "maybelline" "dior" "benefit" "nyx" "revlon" "fenty" “smashbox”'
         app:layout_constraintBottom_toTopOf="@+id/searchTerm"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resultTV" />
 
     <TextView
         android:id="@+id/resultName"
-        android:layout_width="160dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="17dp"
-        android:layout_marginBottom="57dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="121dp"
         android:text="TextView"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/dogPicture"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resultTV" />
+        app:layout_constraintTop_toBottomOf="@+id/dogPicture" />
 
 </android.support.constraint.ConstraintLayout>

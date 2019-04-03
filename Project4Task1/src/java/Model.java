@@ -25,9 +25,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.XML;
+
 
 /**
  *
@@ -35,28 +33,29 @@ import org.json.XML;
  */
 
 public class Model {
-    public static void main(String[] args) throws UnsupportedEncodingException, JSONException {
+    public static void main(String[] args) throws UnsupportedEncodingException {
         Model model = new Model();
-        String print = model.doFlickrSearch();
+        String print = model.doFlickrSearch("dior");
         System.out.println(print);
     }
 
 
         
         // the doFlikrSearch method is used to get the picture url and parse it to the servlet
-        public String doFlickrSearch() 
-            throws UnsupportedEncodingException, JSONException  {
+        public String doFlickrSearch(String input) 
+            throws UnsupportedEncodingException {
       
         String responseJson = "";
         String flickrURL = "http://www.google.com";
         // get the url of the website that we want to do scraping
 //        flickrURL = "https://dog.ceo/api/breed/african/images/random/3";
-        flickrURL = "http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline&product_type=lipstick";
+        flickrURL = "http://makeup-api.herokuapp.com/api/v1/products.json?brand=" + input + "&product_type=lipstick";
+        System.out.println("flickerurl" + flickrURL);
         // set a string called response to get the page source 
         responseJson = fetch(flickrURL);
         String name = "";
         String imageLink = "";
-        String description = "";
+        //String description = "";
         String xmlResponse = "";
         int count = 0;
         while(responseJson.contains("\"name\"")){
@@ -78,36 +77,36 @@ public class Model {
             imageLink = responseJson.substring(imageLeft, imageRight);
             xmlResponse += "<image>" + imageLink + "</image>";
             
-            int desLeft = responseJson.indexOf("\"description\"");
-            int desRight = responseJson.indexOf("\"rating\"");
-            desLeft += 14;
-            desRight -= 1;
-            //System.out.println(desRight);
-            description = responseJson.substring(desLeft, desRight);
-            xmlResponse += "<description>" + description + "</description>";
+//            int desLeft = responseJson.indexOf("\"description\"");
+//            int desRight = responseJson.indexOf("\"rating\"");
+//            desLeft += 14;
+//            desRight -= 1;
+//            //System.out.println(desRight);
+//            description = responseJson.substring(desLeft, desRight);
+//            xmlResponse += "<description>" + description + "</description>";
             
-            responseJson = responseJson.substring(desRight + 20);
+            responseJson = responseJson.substring(imageRight + 15);
             //System.out.println("reaponselen  "+responseJson.length());
         }
         
-         //System.out.println(xmlResponse);
+        // System.out.println(xmlResponse);
         //
          //System.out.println("count "+count);
-         int randomLimit = 5;
+         int randomLimit = 20;
          if(count == 0) return "<root>" + "" + "</root>";
-         if(count < 5 ) randomLimit = count;
+         if(count < 20 ) randomLimit = count;
          Random rd = new Random();
          int randomNum = rd.nextInt(randomLimit);
          if (randomNum == 0) randomNum++;
          //System.out.println("randomnum" + randomNum);
          for(int i = 0; i < randomNum; i++) {
-             int desLeft2 = xmlResponse.indexOf("</description>");
+             int desLeft2 = xmlResponse.indexOf("</image>");
              //System.out.println("desLeft2  "+ desLeft2);
-             xmlResponse = xmlResponse.substring(desLeft2 + "</description>".length());
+             xmlResponse = xmlResponse.substring(desLeft2 + "</image>".length());
          }
          int left = xmlResponse.indexOf("<name>");
-         int right = xmlResponse.indexOf("</description>");
-         right += "</description>".length();
+         int right = xmlResponse.indexOf("</image>");
+         right += "</image>".length();
          xmlResponse = xmlResponse.substring(left,right);
 //            System.out.println("xml after random   "+ xmlResponse);
          xmlResponse = "<root>" + xmlResponse + "</root>";
