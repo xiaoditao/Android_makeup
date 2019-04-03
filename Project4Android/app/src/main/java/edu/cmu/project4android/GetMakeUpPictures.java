@@ -51,9 +51,10 @@ public class GetMakeUpPictures {
          * Search Flickr.com for the searchTerm argument, and return a Bitmap that can be put in an ImageView
          */
         private Bitmap search(String searchTerm) {
-            System.out.println(" AsyncFlickrSearch.search");
+            System.out.println("AsyncFlickrSearch.search");
             String pictureURL = "";
-            Document doc = getRemoteXML("http://10.0.2.2:8080/Project4Task1/Servlet/");
+            System.out.println("searchTerm "+searchTerm);
+            Document doc = getRemoteXML("http://10.0.2.2:8080/Project4Task1/Servlet/" + searchTerm);
             if(doc == null) System.out.println("error for null");
             /////////if doc == null every thing null dior eyeline
             String xmlString = "";

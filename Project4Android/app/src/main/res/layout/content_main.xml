@@ -11,13 +11,14 @@
 
     <TextView
         android:id="@+id/resultTV"
-        android:layout_width="295dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="75dp"
-        android:text="Please input the brand and product you want to search, then you can get a random picture"
-        app:layout_constraintBottom_toTopOf="@+id/searchTerm"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="473dp"
+        android:text="Please input the brand you want to search, by clicking the button several times, you will randomly get picture from the brand"
+        app:layout_constraintBottom_toTopOf="@+id/resultName"
+        app:layout_constraintEnd_toEndOf="@+id/intro"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,47 +26,59 @@
         android:id="@+id/searchTerm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginBottom="40dp"
         android:ems="10"
+        android:hint="input a brand..."
         android:inputType="textPersonName"
-        android:text="input the brand..."
-        app:layout_constraintBottom_toTopOf="@+id/intro"
-        app:layout_constraintEnd_toEndOf="@+id/intro"
-        app:layout_constraintStart_toStartOf="@+id/intro"
-        app:layout_constraintTop_toBottomOf="@+id/resultTV" />
+        app:layout_constraintBottom_toTopOf="@+id/submit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/intro" />
 
     <Button
         android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="30dp"
         android:text="Submit"
         app:layout_constraintBottom_toTopOf="@+id/dogPicture"
-        app:layout_constraintStart_toStartOf="@+id/dogPicture"
-        app:layout_constraintTop_toBottomOf="@+id/intro" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchTerm" />
 
     <ImageView
         android:id="@+id/dogPicture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="180dp"
+        android:layout_width="191dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="136dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/intro"
-        app:layout_constraintStart_toStartOf="@+id/intro"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/submit"
         tools:src="@tools:sample/avatars[0]" />
 
     <TextView
         android:id="@+id/intro"
-        android:layout_width="341dp"
+        android:layout_width="338dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="43dp"
-        android:text='Input a makeup product type. e.g. "lipstick" "eyeline" "foundation"'
-        app:layout_constraintBottom_toTopOf="@+id/submit"
+        android:layout_marginBottom="25dp"
+        android:text='Input a makeup brand name. e.g. "maybelline" "dior" "benefit" "orly" "moov" "essie"'
+        app:layout_constraintBottom_toTopOf="@+id/searchTerm"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchTerm" />
+        app:layout_constraintTop_toBottomOf="@+id/resultTV" />
+
+    <TextView
+        android:id="@+id/resultName"
+        android:layout_width="160dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginBottom="57dp"
+        android:text="TextView"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resultTV" />
 
 </android.support.constraint.ConstraintLayout>
