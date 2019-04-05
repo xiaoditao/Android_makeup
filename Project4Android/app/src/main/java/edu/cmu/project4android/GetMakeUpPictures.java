@@ -55,7 +55,8 @@ public class GetMakeUpPictures {
             System.out.println("AsyncFlickrSearch.search");
             String pictureURL = "";
             System.out.println("searchTerm "+searchTerm);
-            Document doc = getRemoteXML("http://10.0.2.2:8080/Project4Task1/Servlet/" + searchTerm);
+            //https://stormy-springs-95246.herokuapp.com
+            Document doc = getRemoteXML("https://stormy-springs-95246.herokuapp.com/Servlet/" + searchTerm);
             if(doc == null) System.out.println("error for null");
             /////////if doc == null every thing null dior eyeline
             String xmlString = "";

@@ -40,8 +40,6 @@ public class Servlet extends HttpServlet {
         System.out.println("result " + result);
         PrintWriter out = response.getWriter();
         out.println(result);
-     
-        
     }
 }
 

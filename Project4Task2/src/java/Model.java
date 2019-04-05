@@ -38,9 +38,27 @@ public class Model {
 //        String print = model.doFlickrSearch("dior");
 //        System.out.println(print);
 //    }
-
-
         
+        public String getReplyFromAPI(String input) throws UnsupportedEncodingException{
+            String responseJson = "";
+            String flickrURL = "http://www.google.com";
+        // get the url of the website that we want to do scraping
+//        flickrURL = "https://dog.ceo/api/breed/african/images/random/3";
+            flickrURL = "http://makeup-api.herokuapp.com/api/v1/products.json?brand=" + input + "&product_type=lipstick";
+            
+        // set a string called response to get the page source 
+            responseJson = fetch(flickrURL);
+            if(responseJson.length()>200) {
+                responseJson = responseJson.substring(0,200);
+            }
+            String res = responseJson;
+            return responseJson;
+        }
+
+        public String getRequestAPI(String input) {
+            String res = "http://makeup-api.herokuapp.com/api/v1/products.json?brand=" + input + "&product_type=lipstick";
+            return res;
+        }
         // the doFlikrSearch method is used to get the picture url and parse it to the servlet
         public String doFlickrSearch(String input) 
             throws UnsupportedEncodingException {
