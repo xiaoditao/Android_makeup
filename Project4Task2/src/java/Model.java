@@ -33,20 +33,11 @@ import javax.net.ssl.X509TrustManager;
  */
 
 public class Model {
-//    public static void main(String[] args) throws UnsupportedEncodingException {
-//        Model model = new Model();
-//        String print = model.doFlickrSearch("dior");
-//        System.out.println(print);
-//    }
         
         public String getReplyFromAPI(String input) throws UnsupportedEncodingException{
             String responseJson = "";
             String flickrURL = "http://www.google.com";
-        // get the url of the website that we want to do scraping
-//        flickrURL = "https://dog.ceo/api/breed/african/images/random/3";
             flickrURL = "http://makeup-api.herokuapp.com/api/v1/products.json?brand=" + input + "&product_type=lipstick";
-            
-        // set a string called response to get the page source 
             responseJson = fetch(flickrURL);
             if(responseJson.length()>200) {
                 responseJson = responseJson.substring(0,200);
@@ -60,34 +51,25 @@ public class Model {
             return res;
         }
         // the doFlikrSearch method is used to get the picture url and parse it to the servlet
-        public String doFlickrSearch(String input) 
+    public String doFlickrSearch(String input) 
             throws UnsupportedEncodingException {
       
         String responseJson = "";
         String flickrURL = "http://www.google.com";
-        // get the url of the website that we want to do scraping
-//        flickrURL = "https://dog.ceo/api/breed/african/images/random/3";
         flickrURL = "http://makeup-api.herokuapp.com/api/v1/products.json?brand=" + input + "&product_type=lipstick";
-        System.out.println("flickerurl" + flickrURL);
-        // set a string called response to get the page source 
         responseJson = fetch(flickrURL);
         String name = "";
         String imageLink = "";
-        //String description = "";
         String xmlResponse = "";
         int count = 0;
         while(responseJson.contains("\"name\"")){
-           // System.out.println("reaponselen  "+responseJson.length());
             count++;
             int nameLeft = responseJson.indexOf("\"name\"");
             int nameRight = responseJson.indexOf("\"price\"");
             nameLeft += 8;
             nameRight -= 2;
-            //System.out.println("nameleft "+nameLeft);
-            //System.out.println("nameright "+nameRight);
             name = responseJson.substring(nameLeft, nameRight);
-            xmlResponse += "<name>" + name + "</name>";
-            
+            xmlResponse += "<name>" + name + "</name>";           
             int imageLeft = responseJson.indexOf("\"image_link\"");
             int imageRight = responseJson.indexOf("\"product_link\"");
             imageLeft += 13;
@@ -95,11 +77,7 @@ public class Model {
             imageLink = responseJson.substring(imageLeft, imageRight);
             xmlResponse += "<image>" + imageLink + "</image>";            
             responseJson = responseJson.substring(imageRight + 15);
-            //System.out.println("reaponselen  "+responseJson.length());
         }
-        
-        // System.out.println(xmlResponse);
-         //System.out.println("count "+count);
          int randomLimit = 20;
          if(count == 0) return "<root>" + "" + "</root>";
          if(count < 20 ) randomLimit = count;
@@ -169,7 +147,5 @@ private String fetch(String searchURL) {
         };
         HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
     }
-
-
 }
 

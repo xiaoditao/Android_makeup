@@ -56,7 +56,9 @@ public class GetMakeUpPictures {
             String pictureURL = "";
             System.out.println("searchTerm "+searchTerm);
             //https://stormy-springs-95246.herokuapp.com
-            Document doc = getRemoteXML("https://stormy-springs-95246.herokuapp.com/Servlet/" + searchTerm);
+            //Document doc = getRemoteXML("https://stormy-springs-95246.herokuapp.com/Servlet/" + searchTerm);
+            //Document doc = getRemoteXML("https://shielded-reaches-44761.herokuapp.com/Servlet/" + searchTerm);
+            Document doc = getRemoteXML("https://infinite-fjord-42361.herokuapp.com/Servlet/" + searchTerm);
             if(doc == null) System.out.println("error for null");
             /////////if doc == null every thing null dior eyeline
             String xmlString = "";

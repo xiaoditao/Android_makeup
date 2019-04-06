@@ -39,16 +39,15 @@ public class Servlet extends HttpServlet {
         String url=request.getServletPath();
         String nextView;
         if(url.equals("/dashboard")){
-            //get string data from mangodb
-            //String a = print;
-            //System.out.println("a " + a );
-//            for (int i=0;i<15;i++){
-//                request.setAttribute("answer"+i, i);
-//            }
-            
+            try {
+                print = cdb.getFirstView();
+            } catch (JSONException ex) {
+                Logger.getLogger(Servlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
             request.setAttribute("answer", print);
             request.setAttribute("count", cdb.getCount());
             request.setAttribute("average", cdb.getAvg());
+            request.setAttribute("topInput", cdb.getTopInput());
             nextView="dashboard.jsp";
             RequestDispatcher view = request.getRequestDispatcher(nextView);
             view.forward(request, response);
@@ -56,29 +55,18 @@ public class Servlet extends HttpServlet {
         else {
             String path = request.getPathInfo();
             Timestamp timeRequestFromAndroid = new Timestamp(System.currentTimeMillis()); 
-            System.out.println("timestamp request from android "+timeRequestFromAndroid);
-            System.out.println("Console: doGET visited");
-            System.out.println(path);
             String replyToAndroid = "";
             String searchTerm = path.substring(1);
-            System.out.println("searchterm " + searchTerm);
             String requestAPI = model.getRequestAPI(searchTerm);
-            String ip = request.getRemoteAddr();
-            ///////
-            //cdb.test(searchTerm);
+            String deviceType = request.getHeader("User-Agent");
             String replyFromAPI = model.getReplyFromAPI(searchTerm);
-            ///////
             replyToAndroid = model.doFlickrSearch(searchTerm);
-            
-            ////top 300 from api
-            ////what we send back to the android
-            ///time stamp
             PrintWriter out = response.getWriter();
             out.println(replyToAndroid);
+            System.out.println(replyToAndroid.toString());
             Timestamp timeReplyToAndroid = new Timestamp(System.currentTimeMillis()); 
             try {
-                print = cdb.connectMango(timeRequestFromAndroid, searchTerm, requestAPI, replyFromAPI, replyToAndroid, timeReplyToAndroid, ip);
-                //print += ip;
+                print = cdb.connectMango(timeRequestFromAndroid, searchTerm, requestAPI, replyFromAPI, replyToAndroid, timeReplyToAndroid, deviceType);
             } catch (JSONException ex) {
                 Logger.getLogger(Servlet.class.getName()).log(Level.SEVERE, null, ex);
             }

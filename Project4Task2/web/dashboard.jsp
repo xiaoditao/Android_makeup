@@ -13,10 +13,10 @@
         <title>dashboard</title>
     </head>
     <body>
-        <h2>Please type this url to see the dashboard: http://localhost:8080/Project4Task2/dashboard</h2>
         <h3>Operations analytics:</h3>
         <p>Count of the logs: <%=request.getAttribute("count")%> </p><br>
         <p>Average search time latency: <%=request.getAttribute("average")%> milliseconds</p><br>
+        <p>Top 1 search term from android: <%=request.getAttribute("topInput")%> </p><br>  
         <h3>The following shows the logs:</h3>
         <form action="dashboard" method="GET">
         <p><%=request.getAttribute("answer")%> </p>  
